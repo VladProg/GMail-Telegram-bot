@@ -51,11 +51,11 @@ def get_message_text(payload):
         for part in payload['parts']:
             if part['mimeType'] == 'text/plain':
                 data = part['body']['data']
-                text = base64.b64decode(data).decode('utf-8')
+                text = base64.urlsafe_b64decode(data).decode('utf-8')
                 return text
     else:
         data = payload['body']['data']
-        text = base64.b64decode(data).decode('utf-8')
+        text = base64.urlsafe_b64decode(data).decode('utf-8')
         return text
     return ''
 
